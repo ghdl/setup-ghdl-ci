@@ -41,10 +41,10 @@ async function run() {
       core.addPath(path.join(dest, 'bin'));
 
       await exec.exec('tar', ['-xvf', pkg], {cwd: dest});
-      // FIXME: this is required because otherwise the following error is produced:
+      // FIXME: without libgnat-7 the following error is produced:
       // ghdl: error while loading shared libraries: libgnarl-7.so.1: cannot open shared object file: No such file or directory
       // See https://github.com/ghdl/docker/issues/9
-      await exec.exec('sudo', ['apt', 'install', '-y', 'libgnat-7']);
+      await exec.exec('sudo', ['apt', 'install', '-y', 'libllvm5.0', 'libgnat-7']);
 
     }
   }
