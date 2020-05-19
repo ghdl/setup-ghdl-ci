@@ -27,6 +27,7 @@ async function run() {
     if (isWindows) {
 
       await exec.exec('msys2do', ['pacman', '--noconfirm', '-U', pkg.replace(/\\/g, '/')]);
+      await exec.exec('msys2do', ['pacman', '--noconfirm', '-S', 'gcc', 'zlib-devel']);
 
     } else {
 
