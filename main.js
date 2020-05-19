@@ -48,6 +48,8 @@ async function run() {
       await exec.exec('sudo', ['apt', 'install', '-y', 'libllvm5.0', 'libgnat-7']);
 
     }
+
+    core.exportVariable('GHDL', 'ghdl');
   }
   catch (error) {
     core.setFailed(error.message);
