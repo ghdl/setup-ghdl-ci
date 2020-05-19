@@ -1,0 +1,36 @@
+{
+  "name": "setup-ghdl",
+  "version": "0.0.0",
+  "description": "setup GHDL in GitHub Actions workflows",
+  "main": "main.js",
+  "scripts": {
+    "pkg": "ncc build main.js -m -o ./"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/umarcor/setup-ghdl.git"
+  },
+  "keywords": [
+    "GitHub",
+    "Actions",
+    "JavaScript",
+    "GHDL",
+    "VHDL",
+    "CI"
+  ],
+  "author": "GitHub",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/umarcor/setup-ghdl/issues"
+  },
+  "homepage": "https://github.com/umarcor/setup-ghdl#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.4",
+    "@actions/exec": "^1.0.4",
+    "@actions/io": "^1.0.2",
+    "@actions/tool-cache": "^1.3.5"
+  },
+  "devDependencies": {
+    "@zeit/ncc": "^0.22.1"
+  }
+}

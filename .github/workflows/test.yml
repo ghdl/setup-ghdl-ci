@@ -1,0 +1,44 @@
+name: "test"
+
+on:
+  pull_request:
+  push:
+
+jobs:
+
+  ubuntu:
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        task: [ '', mcode, llvm, gcc ]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: ./
+      with:
+        backend: ${{ matrix.task }}
+    - run: ghdl --version
+
+  windows:
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        task: [
+          { msys: MINGW32, backend: mcode },
+          { msys: MINGW64, backend: llvm }
+        ]
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: eine/setup-msys2@v0
+      with:
+        msystem: ${{ matrix.task.msys }}
+        update: true
+    - uses: ./
+      with:
+        backend: ${{ matrix.task.backend }}
+    - shell: msys2 {0}
+      run: |
+        ghdl --version
