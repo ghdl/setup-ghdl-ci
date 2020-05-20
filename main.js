@@ -28,6 +28,9 @@ async function run() {
 
       await exec.exec('msys2do', ['pacman', '--noconfirm', '-U', pkg.replace(/\\/g, '/')]);
       await exec.exec('msys2do', ['pacman', '--noconfirm', '-S', 'gcc', 'zlib-devel']);
+      if (backend == 'llvm') {
+        await exec.exec('msys2do', ['pacman', '--noconfirm', '-S', 'mingw-w64-x86_64-clang']);
+      }
 
     } else {
 
