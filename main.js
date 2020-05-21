@@ -10,7 +10,7 @@ async function run() {
     let backend = core.getInput('backend');
     if (backend === '') { backend = 'mcode' };
 
-    const url = 'https://github.com/umarcor/ghdl/releases/download/nightly/' + (isWindows ?
+    const url = 'https://github.com/ghdl/ghdl/releases/download/nightly/' + (isWindows ?
       (backend === 'llvm' ?
         'mingw-w64-x86_64-ghdl-llvm-ci-1-any.pkg.tar.zst'
         :
