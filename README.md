@@ -31,7 +31,7 @@ Allowed values for `backend` are: `mcode` (default), `llvm` or `gcc`.
 ### `windows-latest`
 
 ```yml
-- uses: eine/setup-msys2@v0
+- uses: msys2/setup-msys2@v0
   with:
     msystem: MINGW64
     update: true
@@ -43,7 +43,7 @@ Allowed values for `backend` are: `mcode` (default), `llvm` or `gcc`.
     ghdl --version
 ```
 
-Note that MSYS2 must be setup first. At the moment, MSYS2 is not available on `windows-latest` environments by default. Hence, using Action [`eine/setup-msys2`](https://github.com/eine/setup-msys2) is required.
+Note that MSYS2 must be setup first. At the moment, MSYS2 is not available on `windows-latest` environments by default. Hence, using Action [`msys2/setup-msys2`](https://github.com/msys2/setup-msys2) is required.
 
 Allowed values are `MINGW64` and `llvm`, or, `MINGW32` and `mcode`. Other options (`MINGW64-mcode`, `MINGW64-gcc`, `MINGW32-llvm` or `MINGW32-gcc`) are not possible or supported yet.
 
