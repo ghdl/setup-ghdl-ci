@@ -26,10 +26,10 @@ async function run() {
 
     if (isWindows) {
 
-      await exec.exec('msys2do', ['pacman', '--noconfirm', '-U', pkg.replace(/\\/g, '/')]);
-      await exec.exec('msys2do', ['pacman', '--noconfirm', '-S', 'gcc', 'zlib-devel']);
+      await exec.exec('msys2', ['pacman', '--noconfirm', '-U', pkg.replace(/\\/g, '/')]);
+      await exec.exec('msys2', ['pacman', '--noconfirm', '-S', 'gcc', 'zlib-devel']);
       if (backend == 'llvm') {
-        await exec.exec('msys2do', ['pacman', '--noconfirm', '-S', 'mingw-w64-x86_64-clang']);
+        await exec.exec('msys2', ['pacman', '--noconfirm', '-S', 'mingw-w64-x86_64-clang']);
       }
 
     } else {
