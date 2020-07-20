@@ -26,8 +26,12 @@ async function run() {
 
     if (isWindows) {
 
+      async function run(args, opts) {
+        await exec.exec('msys2', ['-c', args.join(' ')], opts);
+      }
+
       async function pacman(args, opts) {
-        await exec.exec('msys2', ['pacman', '--noconfirm'].concat(args), opts);
+        await run(['pacman', '--noconfirm'].concat(args), opts);
       }
 
       await pacman(['-U', pkg.replace(/\\/g, '/')]);

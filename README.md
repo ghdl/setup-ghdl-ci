@@ -31,7 +31,7 @@ Allowed values for `backend` are: `mcode` (default), `llvm` or `gcc`.
 ### `windows-latest`
 
 ```yml
-- uses: msys2/setup-msys2@v1
+- uses: msys2/setup-msys2@v2
   with:
     msystem: MINGW64
     update: true
