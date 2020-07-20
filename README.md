@@ -20,7 +20,7 @@ See [test.yml](.github/workflows/test.yml) and the [actions tab](https://github.
 ### `ubuntu-latest`
 
 ```yaml
-- uses: ghdl/setup-ghdl-ci@master
+- uses: ghdl/setup-ghdl-ci@nightly
   with:
     backend: llvm
 - run: ghdl --version
@@ -35,7 +35,7 @@ Allowed values for `backend` are: `mcode` (default), `llvm` or `gcc`.
   with:
     msystem: MINGW64
     update: true
-- uses: ghdl/setup-ghdl-ci@master
+- uses: ghdl/setup-ghdl-ci@nightly
   with:
     backend: llvm
 - shell: msys2 {0}
@@ -43,7 +43,7 @@ Allowed values for `backend` are: `mcode` (default), `llvm` or `gcc`.
     ghdl --version
 ```
 
-Note that MSYS2 must be setup first. At the moment, MSYS2 is not available on `windows-latest` environments by default. Hence, using Action [`msys2/setup-msys2`](https://github.com/msys2/setup-msys2) is required.
+Note that MSYS2 must be setup first. Using Action [`msys2/setup-msys2`](https://github.com/msys2/setup-msys2) is recommended.
 
 Allowed values are `MINGW64` and `llvm`, or, `MINGW32` and `mcode`. Other options (`MINGW64-mcode`, `MINGW64-gcc`, `MINGW32-llvm` or `MINGW32-gcc`) are not possible or supported yet.
 
@@ -55,8 +55,6 @@ Changes should be done in [`main.js`](./main.js), but are uneffective until JS s
 $ npm install
 $ npm run pkg
 ```
-
-> NOTE: Unlike other Actions, this is not tagged or explicitly versioned yet. Hence, changes MUST be tested on feature branches prior to merging into `master`.
 
 - See the [metadata documentation](https://help.github.com/en/articles/metadata-syntax-for-github-actions)
 - See the [toolkit documentation](https://github.com/actions/toolkit/blob/master/README.md#packages) for the various packages.
