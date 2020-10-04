@@ -11,13 +11,13 @@
 
 **setup-ghdl-ci** is a JavaScript GitHub Action (GHA) to setup GHDL using [nightly](https://github.com/ghdl/ghdl/releases/tag/nightly) release assets. Latest packages are retrieved and installed along with required dependencies, to enable testing of VHDL designs in Continuous Integration (CI) workflows.
 
-Currently, GitHub Actions workflow tasks running on `ubuntu-latest` or `windows-latest` are supported only. Contributions to support addional [platforms](https://help.github.com/en/actions/reference/virtual-environments-for-github-hosted-runners#supported-runners-and-hardware-resources) or CI services are welcome!
+Currently, GitHub Actions workflow tasks running on `ubuntu-18.04`, `ubuntu-20.04` or `windows-latest` are supported only. Contributions to support addional [platforms](https://help.github.com/en/actions/reference/virtual-environments-for-github-hosted-runners#supported-runners-and-hardware-resources) or CI services are welcome!
 
 ## Usage
 
 See [test.yml](.github/workflows/test.yml) and the [actions tab](https://github.com/ghdl/setup-ghdl-ci/actions) for runs of this action! :rocket:
 
-### `ubuntu-latest`
+### Ubuntu
 
 ```yaml
 - uses: ghdl/setup-ghdl-ci@nightly
@@ -28,7 +28,7 @@ See [test.yml](.github/workflows/test.yml) and the [actions tab](https://github.
 
 Allowed values for `backend` are: `mcode` (default), `llvm` or `gcc`.
 
-### `windows-latest`
+### Windows
 
 ```yml
 - uses: msys2/setup-msys2@v2
