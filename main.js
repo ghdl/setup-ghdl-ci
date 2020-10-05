@@ -83,7 +83,7 @@ async function run() {
       let pkgs = ['libgnat-' + gnatVersion]
 
       if (backend == 'llvm') {
-        pkgs.concat(['libllvm' + llvmVersion])
+        pkgs = pkgs.concat(['libllvm' + llvmVersion])
       }
       await exec.exec('sudo', ['apt', 'install', '-y'].concat(pkgs));
     }
