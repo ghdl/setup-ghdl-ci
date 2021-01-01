@@ -46,13 +46,8 @@ async function run() {
       async function pacman(args, opts) {
         await exec.exec('msys2', ['-c', ['pacman', '--noconfirm'].concat(args).join(' ')], opts);
       }
-
       await pacman(['-U', pkg.replace(/\\/g, '/')]);
-      await pacman(['-S', '--needed', 'gcc', 'zlib-devel']);
-
-      if (backend == 'llvm') {
-        await pacman(['-S', '--needed', 'mingw-w64-x86_64-clang']);
-      }
+      await pacman(['-S', '--needed', 'gcc']);
 
     } else {
 
