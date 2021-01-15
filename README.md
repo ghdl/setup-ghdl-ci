@@ -1,6 +1,6 @@
 
 <p align="center">
-  <a title="'test' workflow Status" href="https://github.com/ghdl/setup-ghdl-ci/actions?query=workflow%3Atest"><img alt="'test' workflow Status" src="https://img.shields.io/github/workflow/status/ghdl/setup-ghdl-ci/test?longCache=true&style=flat-square&label=test&logo=github"></a><!--
+  <a title="'Test' workflow Status" href="https://github.com/ghdl/setup-ghdl-ci/actions?query=workflow%3ATest"><img alt="'test' workflow Status" src="https://img.shields.io/github/workflow/status/ghdl/setup-ghdl-ci/Test?longCache=true&style=flat-square&label=test&logo=github"></a><!--
   -->
   <a title="Dependency Status" href="https://david-dm.org/ghdl/setup-ghdl-ci"><img src="https://img.shields.io/david/ghdl/setup-ghdl-ci.svg?longCache=true&style=flat-square&label=deps&logo=npm"></a><!--
   -->
@@ -25,6 +25,7 @@ See [test.yml](.github/workflows/test.yml) and the [actions tab](https://github.
 - uses: ghdl/setup-ghdl-ci@nightly
   with:
     backend: llvm
+
 - run: ghdl --version
 ```
 
@@ -32,17 +33,24 @@ Allowed values for `backend` are: `mcode` (default), `llvm` or `gcc`.
 
 ### Windows
 
+For convenience, this Action sets environment variable `MSYS2_PATH` to the root of the MSYS2 installation. That can be used for running GHDL from powershell, the command-line or from Git for Windows.
+
 ```yml
 - uses: msys2/setup-msys2@v2
   with:
     msystem: MINGW64
     update: true
+
 - uses: ghdl/setup-ghdl-ci@nightly
   with:
     backend: llvm
+
 - shell: msys2 {0}
   run: |
     ghdl --version
+
+- shell: powershell
+  run: Invoke-Expression "$env:MSYS2_PATH\MINGW64\bin\ghdl.exe --version"
 ```
 
 Note that MSYS2 must be setup first. Using Action [`msys2/setup-msys2`](https://github.com/msys2/setup-msys2) is recommended.

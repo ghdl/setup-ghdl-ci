@@ -49,6 +49,10 @@ async function run() {
       await pacman(['-U', pkg.replace(/\\/g, '/')]);
       await pacman(['-S', '--needed', 'gcc']);
 
+      await exec.exec('msys2', ['-c', ['cygpath', '-w', '/'].join(' ')], {
+        listeners: { stdout: (data) => { core.exportVariable('MSYS2_PATH', data.toString().trim()); } }
+      });
+
     } else {
 
       const tmp_dir = process.env['RUNNER_TEMP'];

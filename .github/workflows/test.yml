@@ -1,4 +1,4 @@
-name: "test"
+name: Test
 
 on:
   pull_request:
@@ -8,41 +8,72 @@ on:
 
 jobs:
 
+
   ubuntu:
     strategy:
       fail-fast: false
       max-parallel: 3
       matrix:
-        task: [ '', mcode, llvm, gcc ]
+        backend: [ '', mcode, llvm, gcc ]
         version: [ 18.04, 20.04, latest ]
     runs-on: ubuntu-${{ matrix.version }}
+    name: '🐧 Ubuntu ${{ matrix.version }} · ${{ matrix.backend }}'
     steps:
-    - uses: actions/checkout@v2
-    - uses: ./
+
+    - name: '🧰 Checkout'
+      uses: actions/checkout@v2
+
+    - name: Run Action
+      uses: ./
       with:
-        backend: ${{ matrix.task }}
-    - run: ghdl --version
+        backend: ${{ matrix.backend }}
+
+    - name: Test
+      run: ghdl --version
+
 
   windows:
     strategy:
       fail-fast: false
       max-parallel: 2
       matrix:
-        task: [
-          { msys: MINGW32, backend: mcode },
-          { msys: MINGW64, backend: llvm }
+        sys: [
+          { icon: '🟦', msys: MINGW32, backend: mcode },
+          { icon: '🟪', msys: MINGW64, backend: llvm }
         ]
         version: [ 2016, 2019, latest ]
     runs-on: windows-${{ matrix.version }}
+    name: '${{ matrix.sys.icon }} ${{ matrix.sys.msys }} ${{ matrix.version }} · ${{ matrix.sys.backend }}'
     steps:
-    - uses: actions/checkout@v2
-    - uses: msys2/setup-msys2@v2
+
+    - name: '🧰 Checkout'
+      uses: actions/checkout@v2
+
+    - name: '${{ matrix.sys.icon }} Setup MSYS2'
+      uses: msys2/setup-msys2@v2
       with:
-        msystem: ${{ matrix.task.msys }}
+        msystem: ${{ matrix.sys.msys }}
         update: true
-    - uses: ./
+
+    - name: Run Action
+      uses: ./
       with:
-        backend: ${{ matrix.task.backend }}
-    - shell: msys2 {0}
+        backend: ${{ matrix.sys.backend }}
+
+    - name: Test MSYS2
+      shell: msys2 {0}
       run: |
+        echo "MSYS2_PATH: $MSYS2_PATH"
         ghdl --version
+
+    - name: Test gitforwindows
+      shell: bash
+      run: |
+        echo "MSYS2_PATH: $MSYS2_PATH"
+        "$MSYS2_PATH"${{ matrix.sys.msys }}\\bin\\ghdl.exe --version
+
+    - name: Test powershell
+      shell: powershell
+      run: |
+        echo "MSYS2_PATH: $env:MSYS2_PATH"
+        & "$($env:MSYS2_PATH)${{ matrix.sys.msys }}\bin\ghdl.exe" --version
