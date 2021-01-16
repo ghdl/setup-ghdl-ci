@@ -47,10 +47,18 @@ For convenience, this Action sets environment variable `MSYS2_PATH` to the root 
 
 - shell: msys2 {0}
   run: |
+    echo "MSYS2_PATH: $MSYS2_PATH"
     ghdl --version
 
+- shell: bash
+  run: |
+    echo "MSYS2_PATH: $MSYS2_PATH"
+    "$MSYS2_PATH"${{ matrix.sys.msys }}\\bin\\ghdl.exe --version
+
 - shell: powershell
-  run: Invoke-Expression "$env:MSYS2_PATH\MINGW64\bin\ghdl.exe --version"
+  run: |
+    echo "MSYS2_PATH: $env:MSYS2_PATH"
+    & "$($env:MSYS2_PATH)${{ matrix.sys.msys }}\bin\ghdl.exe" --version
 ```
 
 Note that MSYS2 must be setup first. Using Action [`msys2/setup-msys2`](https://github.com/msys2/setup-msys2) is recommended.
