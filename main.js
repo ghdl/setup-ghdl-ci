@@ -41,6 +41,8 @@ async function run() {
     const pkg = await tc.downloadTool(url);
     console.log('Package:', pkg);
 
+    let ghdlPrefix = '';
+
     if (isWindows) {
 
       async function pacman(args, opts) {
@@ -49,9 +51,12 @@ async function run() {
       await pacman(['-U', pkg.replace(/\\/g, '/')]);
       await pacman(['-S', '--needed', 'gcc']);
 
+      let MSYS2_PATH = '';
       await exec.exec('msys2', ['-c', ['cygpath', '-w', '/'].join(' ')], {
-        listeners: { stdout: (data) => { core.exportVariable('MSYS2_PATH', data.toString().trim()); } }
+        listeners: { stdout: (data) => { MSYS2_PATH = data.toString().trim(); } }
       });
+      core.exportVariable('MSYS2_PATH', MSYS2_PATH);
+      ghdlPrefix = MSYS2_PATH + process.env['MSYSTEM'];
 
     } else {
 
@@ -60,12 +65,12 @@ async function run() {
         core.setFailed('Undefined environment variable RUNNER_TEMP');
         return;
       }
-      const dest = path.join(tmp_dir, 'ghdl');
-      await io.mkdirP(dest);
+      ghdlPrefix = path.join(tmp_dir, 'ghdl');
+      await io.mkdirP(ghdlPrefix);
       console.log('Destination:', pkg);
-      core.addPath(path.join(dest, 'bin'));
+      core.addPath(path.join(ghdlPrefix, 'bin'));
 
-      await exec.exec('tar', ['-xvf', pkg], {cwd: dest});
+      await exec.exec('tar', ['-xvf', pkg], {cwd: ghdlPrefix});
 
       // For 18.04
       let gnatVersion = '7';
@@ -87,7 +92,9 @@ async function run() {
       await exec.exec('sudo', ['apt', 'install', '-y'].concat(pkgs));
     }
 
-    core.exportVariable('GHDL', 'ghdl');
+    core.exportVariable('GHDL_PREFIX', ghdlPrefix );
+    core.exportVariable('GHDL', path.join(ghdlPrefix, 'bin', 'ghdl' + ((isWindows) ? '.exe' : '')));
+    core.exportVariable('GHDL_LIBS', path.join(ghdlPrefix, 'lib', 'ghdl'));
   }
   catch (error) {
     core.setFailed(error.message);

@@ -29,7 +29,12 @@ jobs:
         backend: ${{ matrix.backend }}
 
     - name: Test
-      run: ghdl --version
+      run: |
+        echo "GHDL_PREFIX: $GHDL_PREFIX"
+        echo "GHDL: $GHDL"
+        echo "GHDL_LIBS: $GHDL_LIBS"
+        ghdl --version
+        $GHDL --version
 
 
   windows:
@@ -64,16 +69,22 @@ jobs:
       shell: msys2 {0}
       run: |
         echo "MSYS2_PATH: $MSYS2_PATH"
+        echo "GHDL_PREFIX: $GHDL_PREFIX"
+        echo "GHDL: $GHDL"
+        echo "GHDL_LIBS: $GHDL_LIBS"
         ghdl --version
+        $GHDL --version
 
     - name: Test gitforwindows
       shell: bash
       run: |
         echo "MSYS2_PATH: $MSYS2_PATH"
         "$MSYS2_PATH"${{ matrix.sys.msys }}\\bin\\ghdl.exe --version
+        $GHDL --version
 
     - name: Test powershell
       shell: powershell
       run: |
         echo "MSYS2_PATH: $env:MSYS2_PATH"
         & "$($env:MSYS2_PATH)${{ matrix.sys.msys }}\bin\ghdl.exe" --version
+        & "$env:GHDL" --version

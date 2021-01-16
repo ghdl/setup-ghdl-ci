@@ -19,6 +19,8 @@ Contributions for supporting addional [platforms](https://help.github.com/en/act
 
 See [test.yml](.github/workflows/test.yml) and the [actions tab](https://github.com/ghdl/setup-ghdl-ci/actions) for runs of this action! :rocket:
 
+This Action sets envvars `GHDL_PREFIX`, `GHDL`, `GHDL_LIBS` and (on Windows only) `MSYS2_PATH`. Those can be used for running GHDL from shells other than `bash`.
+
 ### Ubuntu
 
 ```yaml
@@ -26,14 +28,15 @@ See [test.yml](.github/workflows/test.yml) and the [actions tab](https://github.
   with:
     backend: llvm
 
-- run: ghdl --version
+- run: |
+    ghdl --version
+
+    $GHDL --version
 ```
 
 Allowed values for `backend` are: `mcode` (default), `llvm` or `gcc`.
 
 ### Windows
-
-For convenience, this Action sets environment variable `MSYS2_PATH` to the root of the MSYS2 installation. That can be used for running GHDL from powershell, the command-line or from Git for Windows.
 
 ```yml
 - uses: msys2/setup-msys2@v2
@@ -47,17 +50,20 @@ For convenience, this Action sets environment variable `MSYS2_PATH` to the root 
 
 - shell: msys2 {0}
   run: |
-    echo "MSYS2_PATH: $MSYS2_PATH"
     ghdl --version
+
+    $GHDL --version
 
 - shell: bash
   run: |
-    echo "MSYS2_PATH: $MSYS2_PATH"
+    $GHDL --version
+
     "$MSYS2_PATH"${{ matrix.sys.msys }}\\bin\\ghdl.exe --version
 
 - shell: powershell
   run: |
-    echo "MSYS2_PATH: $env:MSYS2_PATH"
+    & "$env:GHDL" --version
+
     & "$($env:MSYS2_PATH)${{ matrix.sys.msys }}\bin\ghdl.exe" --version
 ```
 
