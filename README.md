@@ -58,13 +58,13 @@ Allowed values for `backend` are: `mcode` (default), `llvm` or `gcc`.
   run: |
     $GHDL --version
 
-    "$MSYS2_PATH"${{ matrix.sys.msys }}\\bin\\ghdl.exe --version
+    "$MSYS2_PATH"MINGW64\\bin\\ghdl.exe --version
 
 - shell: powershell
   run: |
     & "$env:GHDL" --version
 
-    & "$($env:MSYS2_PATH)${{ matrix.sys.msys }}\bin\ghdl.exe" --version
+    & "$($env:MSYS2_PATH)MINGW64\bin\ghdl.exe" --version
 ```
 
 Note that MSYS2 must be setup first. Using Action [`msys2/setup-msys2`](https://github.com/msys2/setup-msys2) is recommended.
