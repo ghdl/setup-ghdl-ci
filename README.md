@@ -19,7 +19,7 @@ Contributions for supporting addional [platforms](https://help.github.com/en/act
 
 See [test.yml](.github/workflows/test.yml) and the [actions tab](https://github.com/ghdl/setup-ghdl-ci/actions) for runs of this action! :rocket:
 
-This Action sets envvars `GHDL_PREFIX`, `GHDL`, `GHDL_LIBS` and (on Windows only) `MSYS2_PATH`. Those can be used for running GHDL from shells other than `bash`.
+This Action sets envvars `GHDL`, `GHDL_PREFIX`, and (on Windows only) `MSYS2_PATH`. Those can be used for running GHDL from shells other than `bash`.
 
 ### Ubuntu
 

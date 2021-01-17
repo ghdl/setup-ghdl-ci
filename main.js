@@ -92,9 +92,10 @@ async function run() {
       await exec.exec('sudo', ['apt', 'install', '-y'].concat(pkgs));
     }
 
-    core.exportVariable('GHDL_PREFIX', ghdlPrefix );
     core.exportVariable('GHDL', path.join(ghdlPrefix, 'bin', 'ghdl' + ((isWindows) ? '.exe' : '')));
-    core.exportVariable('GHDL_LIBS', path.join(ghdlPrefix, 'lib', 'ghdl'));
+    const ghdlLibs = path.join(ghdlPrefix, 'lib', 'ghdl');
+    // GHDL expects GHDL_PREFIX this variable to point to the libs prefix, not to the system prefix where GHDL is installed
+    core.exportVariable('GHDL_PREFIX', ghdlLibs );
   }
   catch (error) {
     core.setFailed(error.message);

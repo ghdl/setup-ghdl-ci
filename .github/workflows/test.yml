@@ -71,7 +71,6 @@ jobs:
         echo "MSYS2_PATH: $MSYS2_PATH"
         echo "GHDL_PREFIX: $GHDL_PREFIX"
         echo "GHDL: $GHDL"
-        echo "GHDL_LIBS: $GHDL_LIBS"
         ghdl --version
         $GHDL --version
 
