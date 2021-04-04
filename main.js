@@ -11,6 +11,7 @@ async function run() {
     let backend = core.getInput('backend');
     if (backend === '') { backend = 'mcode' };
 
+    core.startGroup('Check OS');
     let osVersion = '';
 
     if ( isLinux ) {
@@ -26,6 +27,9 @@ async function run() {
         throw new Error(`Ubuntu version ${ osVersion.replace(/^\s+|\s+$/g, '') } is not supported!`);
       }
     }
+    core.endGroup();
+
+    core.startGroup('Setup GHDL');
 
     const url = 'https://github.com/ghdl/ghdl/releases/download/nightly/' + (isWindows ?
       (backend === 'llvm' ?
@@ -91,11 +95,18 @@ async function run() {
       }
       await exec.exec('sudo', ['apt', 'install', '-y'].concat(pkgs));
     }
+    core.endGroup();
 
-    core.exportVariable('GHDL', path.join(ghdlPrefix, 'bin', 'ghdl' + ((isWindows) ? '.exe' : '')));
+    core.startGroup('Set environment variables');
+    let _ghdl = path.join(ghdlPrefix, 'bin', 'ghdl' + ((isWindows) ? '.exe' : ''));
+    core.exportVariable('GHDL', _ghdl);
     const ghdlLibs = path.join(ghdlPrefix, 'lib', 'ghdl');
     // GHDL expects GHDL_PREFIX this variable to point to the libs prefix, not to the system prefix where GHDL is installed
     core.exportVariable('GHDL_PREFIX', ghdlLibs );
+    core.endGroup();
+
+    // Print GHDL version
+    await exec.exec(_ghdl, ['version']);
   }
   catch (error) {
     core.setFailed(error.message);
