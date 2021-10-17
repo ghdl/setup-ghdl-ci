@@ -13,6 +13,7 @@ async function run() {
 
     core.startGroup('Check OS');
     let osVersion = '';
+    let MINGW_PACKAGE_PREFIX = '';
 
     if ( isLinux ) {
       const options = {
@@ -27,16 +28,18 @@ async function run() {
         throw new Error(`Ubuntu version ${ osVersion.replace(/^\s+|\s+$/g, '') } is not supported!`);
       }
     }
+
+    if ( isWindows ) {
+      await exec.exec('msys2', ['-c', ['echo', '$MINGW_PACKAGE_PREFIX'].join(' ')], {
+        listeners: { stdout: (data) => { MINGW_PACKAGE_PREFIX = data.toString().trim(); } }
+      });
+    }
     core.endGroup();
 
     core.startGroup('Setup GHDL');
 
     const url = 'https://github.com/ghdl/ghdl/releases/download/nightly/' + (isWindows ?
-      (backend === 'llvm' ?
-        'mingw-w64-x86_64-ghdl-llvm-ci-1-any.pkg.tar.zst'
-        :
-        'mingw-w64-i686-ghdl-mcode-ci-1-any.pkg.tar.zst'
-      )
+      `${ MINGW_PACKAGE_PREFIX }-ghdl-${ backend }-ci-1-any.pkg.tar.zst`
       :
       `ghdl-gha-ubuntu-${ osVersion }-${ backend }.tgz`
     );

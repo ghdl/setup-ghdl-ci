@@ -41,10 +41,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        sys: [
-          { icon: '🟦', msys: MINGW32, backend: mcode },
-          { icon: '🟪', msys: MINGW64, backend: llvm }
-        ]
+        sys:
+          #- { icon: '🟪', msys: MINGW32, backend: llvm } ! not yet functional
+          - { icon: '🟦', msys: MINGW64, backend: llvm }
+          - { icon: '🟨', msys: UCRT64,  backend: llvm }
+          - { icon: '🟪', msys: MINGW32, backend: mcode }
+          - { icon: '🟦', msys: MINGW64, backend: mcode }
+          - { icon: '🟨', msys: UCRT64,  backend: mcode }
         version: [ 2016, 2019, latest ]
     runs-on: windows-${{ matrix.version }}
     name: '${{ matrix.sys.icon }} ${{ matrix.sys.msys }} ${{ matrix.version }} · ${{ matrix.sys.backend }}'

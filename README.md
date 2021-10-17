@@ -68,8 +68,8 @@ Allowed values for `backend` are: `mcode` (default), `llvm` or `gcc`.
 ```
 
 Note that MSYS2 must be setup first. Using Action [`msys2/setup-msys2`](https://github.com/msys2/setup-msys2) is recommended.
-
-Allowed values are `MINGW64` and `llvm`, or, `MINGW32` and `mcode`. Other options (`MINGW64-mcode`, `MINGW64-gcc`, `MINGW32-llvm` or `MINGW32-gcc`) are not possible or supported yet.
+Allowed values are `MINGW64`, `MINGW32`, or `UCRT64`.
+Note that simulation with mcode backend on 64 bits is not supported yet, and backend LLVM is not available on 32 bits yet.
 
 ## Development
 
