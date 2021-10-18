@@ -1,5 +1,5 @@
 name: 'Setup GHDL'
-description: 'Easily install nightly GHDL assets in GitHub Actions workflows'
+description: 'Easily install tip/nightly GHDL assets in GitHub Actions workflows'
 inputs:
   backend:
     description: 'Select GHDL backend (mcode, llvm or gcc)'
