@@ -5,9 +5,6 @@ inputs:
     description: 'Select GHDL backend (mcode, llvm or gcc)'
     required: false
     default: mcode
-outputs:
-  time: # output will be available to future steps
-    description: 'The message to output'
 runs:
   using: 'node12'
   main: 'index.js'

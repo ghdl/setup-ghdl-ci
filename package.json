@@ -1,14 +1,14 @@
 {
-  "name": "setup-ghdl",
+  "name": "setup-ghdl-ci",
   "version": "0.0.0",
-  "description": "setup GHDL in GitHub Actions workflows",
+  "description": "Setup GHDL in GitHub Actions workflows",
   "main": "main.js",
   "scripts": {
     "pkg": "ncc build main.js -m -o ./"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/umarcor/setup-ghdl.git"
+    "url": "git+https://github.com/ghdl/setup-ghdl-ci.git"
   },
   "keywords": [
     "GitHub",
@@ -21,9 +21,9 @@
   "author": "GitHub",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/umarcor/setup-ghdl/issues"
+    "url": "https://github.com/ghdl/setup-ghdl-ci/issues"
   },
-  "homepage": "https://github.com/umarcor/setup-ghdl#readme",
+  "homepage": "https://github.com/ghdl/setup-ghdl-ci#readme",
   "dependencies": {
     "@actions/core": "^1.6.0",
     "@actions/exec": "^1.1.0",
