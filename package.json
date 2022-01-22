@@ -31,6 +31,6 @@
     "@actions/tool-cache": "^1.7.1"
   },
   "devDependencies": {
-    "@zeit/ncc": "^0.22.3"
+    "@vercel/ncc": "^0.33.1"
   }
 }
