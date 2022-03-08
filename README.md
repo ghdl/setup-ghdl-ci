@@ -2,9 +2,6 @@
 <p align="center">
   <a title="'Test' workflow Status" href="https://github.com/ghdl/setup-ghdl-ci/actions?query=workflow%3ATest"><img alt="'test' workflow Status" src="https://img.shields.io/github/workflow/status/ghdl/setup-ghdl-ci/Test?longCache=true&style=flat-square&label=test&logo=github"></a><!--
   -->
-  <a title="Dependency Status" href="https://david-dm.org/ghdl/setup-ghdl-ci"><img src="https://img.shields.io/david/ghdl/setup-ghdl-ci.svg?longCache=true&style=flat-square&label=deps&logo=npm"></a><!--
-  -->
-  <a title="DevDependency Status" href="https://david-dm.org/ghdl/setup-ghdl-ci?type=dev"><img src="https://img.shields.io/david/dev/ghdl/setup-ghdl-ci.svg?longCache=true&style=flat-square&label=devdeps&logo=npm"></a>
 </p>
 
 # GitHub Action to setup [GHDL](https://github.com/ghdl/ghdl)
