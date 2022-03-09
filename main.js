@@ -96,6 +96,7 @@ async function run() {
       if (backend == 'llvm') {
         pkgs = pkgs.concat(['libllvm' + llvmVersion])
       }
+      await exec.exec('sudo', ['apt', 'update', '-qq']);
       await exec.exec('sudo', ['apt', 'install', '-y'].concat(pkgs));
     }
     core.endGroup();
