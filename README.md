@@ -8,7 +8,7 @@
 
 **setup-ghdl-ci** is a JavaScript GitHub Action (GHA) to setup GHDL using [nightly](https://github.com/ghdl/ghdl/releases/tag/nightly) release assets. Latest packages are retrieved and installed along with required dependencies, to enable testing of VHDL designs in Continuous Integration (CI) workflows.
 
-Currently, GitHub Actions workflow tasks running on Ubuntu or Windows are supported only. Precisely [environments](https://github.com/actions/virtual-environments#available-environments) `ubuntu-18.04`|`ubuntu-latest`, `ubuntu-20.04`, `windows-2019`|`windows-latest` or `windows-2016` can be used.
+Currently, GitHub Actions workflow tasks running on Ubuntu or Windows are supported only. Precisely [environments](https://github.com/actions/virtual-environments#available-environments) `ubuntu-18.04`|`ubuntu-latest`, `ubuntu-20.04`, `windows-2019`|`windows-latest` or `windows-2022` can be used.
 
 Contributions for supporting addional [platforms](https://help.github.com/en/actions/reference/virtual-environments-for-github-hosted-runners#supported-runners-and-hardware-resources) or CI services are welcome! For instance, GHDL is already tested on GitHub Actions `macos-latest`, but packaging is not done yet.
 
