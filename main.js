@@ -24,7 +24,7 @@ async function run() {
       if ( await exec.exec('sed', ['-n', 's/^VERSION_ID="\\(.*\\)".*/\\1/p', '/etc/os-release'], options) ) {
         throw new Error(`Could not read os version ID from '/etc/os-release!`);
       };
-      if ( osVersion !== '18.04' && osVersion !== '20.04' ) {
+      if ( osVersion !== '20.04' && osVersion !== '22.04' ) {
         throw new Error(`Ubuntu version ${ osVersion.replace(/^\s+|\s+$/g, '') } is not supported!`);
       }
     }
@@ -80,12 +80,12 @@ async function run() {
       await exec.exec('tar', ['-xvf', pkg], {cwd: ghdlPrefix});
 
       // For 18.04
-      let gnatVersion = '7';
-      let llvmVersion = '5.0';
+      let gnatVersion = '9';
+      let llvmVersion = '10';
 
-      if ( osVersion == '20.04' ) {
-        gnatVersion = '9';
-        llvmVersion = '10';
+      if ( osVersion == '22.04' ) {
+        gnatVersion = '10';
+        llvmVersion = '11';
       }
 
       // FIXME: without libgnat-* the following error is produced:
