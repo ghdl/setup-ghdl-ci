@@ -1,6 +1,6 @@
 
 <p align="center">
-  <a title="'Test' workflow Status" href="https://github.com/ghdl/setup-ghdl-ci/actions?query=workflow%3ATest"><img alt="'test' workflow Status" src="https://img.shields.io/github/workflow/status/ghdl/setup-ghdl-ci/Test?longCache=true&style=flat-square&label=test&logo=github"></a><!--
+  <a title="'Test' workflow Status" href="https://github.com/ghdl/setup-ghdl-ci/actions/workflows/test.yml"><img alt="'test' workflow Status" src="https://img.shields.io/github/actions/workflow/status/ghdl/setup-ghdl-ci/test.yml?branch=master&longCache=true&style=flat-square&label=Test&logo=GitHubActions&logoColor=fff"></a><!--
   -->
 </p>
 
