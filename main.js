@@ -24,7 +24,7 @@ async function run() {
       if ( await exec.exec('sed', ['-n', 's/^VERSION_ID="\\(.*\\)".*/\\1/p', '/etc/os-release'], options) ) {
         throw new Error(`Could not read os version ID from '/etc/os-release!`);
       };
-      if ( osVersion !== '20.04' && osVersion !== '22.04' ) {
+      if ( osVersion !== '20.04' && osVersion !== '22.04' && osVersion !== '24.04' ) {
         throw new Error(`Ubuntu version ${ osVersion.replace(/^\s+|\s+$/g, '') } is not supported!`);
       }
     }
