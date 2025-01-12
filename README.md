@@ -1,10 +1,23 @@
-
 <p align="center">
   <a title="'Test' workflow Status" href="https://github.com/ghdl/setup-ghdl-ci/actions/workflows/test.yml"><img alt="'test' workflow Status" src="https://img.shields.io/github/actions/workflow/status/ghdl/setup-ghdl-ci/test.yml?branch=master&longCache=true&style=flat-square&label=Test&logo=GitHubActions&logoColor=fff"></a><!--
   -->
 </p>
 
 # GitHub Action to setup [GHDL](https://github.com/ghdl/ghdl)
+
+> [!CAUTION]
+> This GitHub Action has been deprecated in favor of [setup-ghdl](https://github.com/ghdl/setup-ghdl).
+> ```yml
+> jobs:
+>   GHDL-on-Ubuntu:
+>     runs-on: ubuntu-24.04
+>     steps:
+>       - name: Run VHDL Simulation
+>         uses: ghdl/setup-ghdl@v1
+>         with:
+>           version: nightly
+>           backend: mcode
+> ```
 
 **setup-ghdl-ci** is a JavaScript GitHub Action (GHA) to setup GHDL using [nightly](https://github.com/ghdl/ghdl/releases/tag/nightly) release assets. Latest packages are retrieved and installed along with required dependencies, to enable testing of VHDL designs in Continuous Integration (CI) workflows.
 
