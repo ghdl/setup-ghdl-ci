@@ -6,7 +6,8 @@
 # GitHub Action to setup [GHDL](https://github.com/ghdl/ghdl)
 
 > [!CAUTION]
-> This GitHub Action has been deprecated in favor of [setup-ghdl](https://github.com/ghdl/setup-ghdl).
+> This GitHub Action (`setup-ghdl-ci`) has been **deprecated** in favor of the new [setup-ghdl](https://github.com/ghdl/setup-ghdl) Action.
+> Please update your YAMl files and transition to the new GitHub Action. See the linked repository for details on optional parameters. Quick example:
 > ```yml
 > jobs:
 >   GHDL-on-Ubuntu:
@@ -18,6 +19,13 @@
 >           version: nightly
 >           backend: mcode
 > ```
+> **Why has it been changed?**  
+> * The Javascript GitHub Action is hard to maintain.  
+>   In addition, it has a high complexity with Node.js and other tools compare to a much simpler Composite Action using simple shell instructions in Bash/Powershell.
+> * This action doesn't support the `ubuntu-24.04` (= `ubuntu-latest`) runner image.
+> * This Action uses wrong tagging to select GHDL versions. See analysis: https://github.com/ghdl/ghdl/issues/2852
+> * Due to changes in GHDL's nightly releases and attached assets, the filenames are broken.
+> --------
 
 **setup-ghdl-ci** is a JavaScript GitHub Action (GHA) to setup GHDL using [nightly](https://github.com/ghdl/ghdl/releases/tag/nightly) release assets. Latest packages are retrieved and installed along with required dependencies, to enable testing of VHDL designs in Continuous Integration (CI) workflows.
 
